@@ -1,11 +1,13 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  # load environment variables from .env if it exists.
+load_dotenv()
 
 class Config(object):
-    """Base Config Object"""
-    DEBUG = False
+    DEBUG = os.environ.get('FLASK_DEBUG', 'False') == 'True'
     SECRET_KEY = os.environ.get('SECRET_KEY', 'Som3$ec5etK*y')
-    #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', '').replace('postgres://', 'postgresql://')
-    #SQLALCHEMY_TRACK_MODIFICATIONS = False # This is just here to suppress a warning from SQLAlchemy as it will soon be removed
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        'DATABASE_URL',
+        'postgresql://postgres:password@localhost/info3180project1'
+    )
+    SQLALCHEMY_TRACK_MODIFICATIONS = False

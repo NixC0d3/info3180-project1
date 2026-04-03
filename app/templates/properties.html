@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Properties{% endblock %}
+
+{% block main %}
+<section class="properties-section">
+    <h1 class="page-title">Properties</h1>
+
+    <div class="property-grid">
+        {% for p in properties %}
+        <div class="property-card">
+            <img src="{{ url_for('static', filename='uploads/' + p.photo) }}" alt="{{ p.title }}" class="property-card-image">
+
+            <div class="property-card-body">
+                <h3 class="property-card-title">{{ p.title }}</h3>
+                <p class="property-card-location">{{ p.location }}</p>
+                <span class="price-pill">${{ "{:,.0f}".format(p.price) }}</span>
+            </div>
+
+            <a class="view-property-btn" href="{{ url_for('property_detail', id=p.id) }}">View Property</a>
+        </div>
+        {% else %}
+        <p>No properties added yet.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

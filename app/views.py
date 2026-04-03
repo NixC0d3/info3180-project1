@@ -1,17 +1,11 @@
-"""
-Flask Documentation:     https://flask.palletsprojects.com/
-Jinja2 Documentation:    https://jinja.palletsprojects.com/
-Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
-This file contains the routes for your application.
-"""
+from flask import render_template, request, redirect, url_for, flash
+from app import app, db
+from app.forms import PropertyForm
+from app.models import Property
+import os
+from werkzeug.utils import secure_filename
 
-from app import app
-from flask import render_template, request, redirect, url_for
-
-
-###
-# Routing for your application.
-###
+UPLOAD_FOLDER = 'app/static/uploads'
 
 @app.route('/')
 def home():
@@ -22,12 +16,48 @@ def home():
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return render_template('about.html', name="Mary Jane")
+    return render_template('about.html')
 
+@app.route('/properties/create', methods=['GET', 'POST'])
+def create_property():
+    form = PropertyForm()
 
-###
-# The functions below should be applicable to all Flask apps.
-###
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            file = form.photo.data
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(UPLOAD_FOLDER, filename))
+
+            property = Property(
+                title=form.title.data,
+                description=form.description.data,
+                bedrooms=form.bedrooms.data,
+                bathrooms=form.bathrooms.data,
+                location=form.location.data,
+                price=form.price.data,
+                property_type=form.property_type.data,
+                photo=filename
+            )
+
+            db.session.add(property)
+            db.session.commit()
+
+            flash('Property successfully added!', 'success')
+            return redirect(url_for('properties'))
+        else:
+            flash_errors(form)
+
+    return render_template('add_property.html', form=form)
+
+@app.route('/properties')
+def properties():
+    properties = Property.query.all()
+    return render_template('properties.html', properties=properties)
+    
+@app.route('/properties/<int:id>')
+def property_detail(id):
+    property = Property.query.get_or_404(id)
+    return render_template('property.html', property=property)
 
 # Display Flask WTF errors as Flash messages
 def flash_errors(form):

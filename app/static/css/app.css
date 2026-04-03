@@ -1,3 +1,247 @@
 body {
-    padding-top: 5rem;
+    background: #f3f3f3;
+    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page-wrapper {
+    padding-top: 40px;
+    min-height: 100vh;
+}
+
+.custom-navbar {
+    background: #1fc7b6;
+    padding: 14px 0;
+}
+
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover,
+.brand:hover {
+    color: #fff;
+    opacity: 0.9;
+}
+
+.page-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 30px 0 25px;
+}
+
+.property-form-card {
+    background: #fff;
+    padding: 30px;
+    max-width: 700px;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-row-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.submit-btn {
+    background: #4d9cff;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+}
+
+.submit-btn:hover {
+    background: #3a8ced;
+    color: #fff;
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.property-card {
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.property-card-image {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+}
+
+.property-card-body {
+    padding: 16px;
+}
+
+.property-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.property-card-location {
+    color: #777;
+    margin-bottom: 14px;
+}
+
+.price-pill {
+    display: inline-block;
+    background: #5fa8ff;
+    color: #fff;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+}
+
+.view-property-btn {
+    display: block;
+    text-align: center;
+    background: #1fc7b6;
+    color: #fff;
+    text-decoration: none;
+    padding: 14px;
+    font-weight: 700;
+}
+
+.view-property-btn:hover {
+    color: #fff;
+    background: #18b3a5;
+}
+
+.single-property-card {
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    max-width: 980px;
+    margin: 30px auto;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.single-property-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.single-property-details {
+    padding: 30px;
+}
+
+.single-property-title {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.single-property-badges {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.type-pill {
+    display: inline-block;
+    background: #f3c542;
+    color: #fff;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+}
+
+.single-property-description {
+    margin-bottom: 22px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.email-btn {
+    background: #1fc7b6;
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.email-btn:hover {
+    background: #18b3a5;
+}
+
+.site-footer {
+    margin-top: 40px;
+    padding: 20px 0 30px;
+    color: #666;
+}
+
+@media (max-width: 992px) {
+    .property-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .single-property-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .nav-links a {
+        margin-left: 0;
+        margin-right: 16px;
+    }
+
+    .form-row-two,
+    .property-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-title {
+        font-size: 2.2rem;
+    }
 }

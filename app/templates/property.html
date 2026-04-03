@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ property.title }}{% endblock %}
+
+{% block main %}
+<section class="single-property-section">
+    <div class="single-property-card">
+        <div class="single-property-image-wrap">
+            <img src="{{ url_for('static', filename='uploads/' + property.photo) }}" alt="{{ property.title }}" class="single-property-image">
+        </div>
+
+        <div class="single-property-details">
+            <h1 class="single-property-title">{{ property.title }}</h1>
+
+            <div class="single-property-badges">
+                <span class="price-pill">${{ "{:,.0f}".format(property.price) }}</span>
+                <span class="type-pill">{{ property.property_type }}</span>
+            </div>
+
+            <p class="single-property-description">{{ property.description }}</p>
+
+            <div class="single-property-meta">
+                <p>{{ property.bedrooms }} Bedrooms</p>
+                <p>{{ property.bathrooms }} Bathrooms</p>
+                <p>{{ property.location }}</p>
+            </div>
+
+            <button class="email-btn" type="button">Email Realtor</button>
+        </div>
+    </div>
+</section>
+{% endblock %}
